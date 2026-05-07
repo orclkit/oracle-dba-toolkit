@@ -4,7 +4,19 @@
 [ SQL](https://wikipedia.org)
 [ License: GPL v3](https://gnu.org)
 
-Essential toolkit for **Oracle Database Administrators** to automate daily monitoring, audit schema integrity, and track system health. This repository serves as a professional portfolio of high-performance SQL scripts designed for enterprise-level database management.
+Essential toolkit for **Oracle Database Administrators** to automate daily monitoring, audit schema integrity, and track system health. This repository serves as a professional portfolio of high-performance SQL scripts and in-depth technical guides for enterprise-level database management.
+
+---
+
+## 📚 Technical Knowledge Base (Articles)
+
+### [Auditing Oracle 19c Patching on AWS RDS](./articles/oracle-19c-rds-patching-audit-guide.md)
+**The Definitive Guide to DBA_REGISTRY_SQLPATCH**
+
+A deep dive into verifying database patch levels in managed cloud environments. This guide is essential for developers and DBAs working on **Oracle 19c RDS** where standard OS access (`opatch`) is restricted.
+
+- **Key Topics:** `DBA_REGISTRY_SQLPATCH` vs legacy views, decoding **NJ flags**, and XML metadata extraction.
+- **Tools:** Advanced SQL and XQuery (`XMLTABLE`) for data dictionary auditing.
 
 ---
 
@@ -33,7 +45,7 @@ To ensure the successful execution of these scripts, verify the following:
 ---
 
 ## 🚀 Getting Started
-1. **Clone the repo:** `git clone https://github.com`
+1. **Clone the repo:** `git clone https://github.com/orclkit/oracle-dba-toolkit`
 2. **Execution:** Run scripts via **SQL Developer**, **TOAD**, or **SQL*Plus**.
 3. **Configuration:** Update the `OWNER` filter in the `WHERE` clause:
    - `src.owner = 'SOURCE_SCHEMA'`
@@ -56,6 +68,7 @@ To ensure the successful execution of these scripts, verify the following:
 ## 📂 Project Structure
 - `scripts/`: Production-ready SQL utilities for maintenance and auditing.
 - `article/`: In-depth guides on Oracle source extraction and DBA best practices.
+- `images/`: Technical diagrams and query result demonstrations.
 
 ## 👨‍💻 Portfolio & Contact
 Expert in **Oracle Database Administration**, specializing in automation, high-availability, and performance tuning.
