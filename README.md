@@ -35,6 +35,19 @@ This diagnostic utility is crucial for identifying **INVALID objects** across di
 
 ---
 
+### [Oracle Patch RU Level & Component Auditor](./scripts/verify-oracle-19c-patch-ru-level-and-internal-components.sql)
+**High-Impact Utility for SQL Patch Metadata Reporting**
+
+This utility leverages **Analytic Functions** and **XQuery** to parse the database's internal XML descriptors. It identifies the **Patch RU Level** while ignoring failed attempts, providing a clean audit of the current database software state.
+
+- **Primary Use Case:** Verifying Patch Release Updates (RU) and internal component health in **AWS RDS** or on-premise environments.
+- **Key Features:**
+  - Extracts **ruVersion** and **Patch Component Impact** from `XMLTYPE` descriptors.
+  - Resolves **Patch Registry** history using `ROW_NUMBER()` for a deduplicated view.
+  - Essential for identifying JVM and CATPROC patch states.
+
+---
+
 ## 📋 Prerequisites & Requirements
 To ensure the successful execution of these scripts, verify the following:
 
@@ -62,7 +75,10 @@ To ensure the successful execution of these scripts, verify the following:
 | **ORA-00942** | Missing Privileges | Use `ALL_OBJECTS` or request `SELECT_CATALOG_ROLE`. |
 | **No Matches Found** | Case Sensitivity | Schema names must be **UPPERCASE** (e.g., `'ADMIN'`, not `'admin'`). |
 | **Performance Lag** | Dictionary Size | Filter by `OBJECT_TYPE` (e.g., `'PACKAGE'`) to reduce join overhead. |
-
+| **ORA-19279** | XML Sequence Mismatch | Ensure the query uses `string-join()` for patches affecting multiple components. |
+| **Empty "target_ru"** | Legacy Patches | Older patches in the registry (pre-12c style) may lack XML attributes; check `description` instead. |
+| **ORA-01031** | Insufficient Privileges | User requires `SELECT` on `DBA_REGISTRY_SQLPATCH` (usually granted via `DBA` role). |
+| **Inaccurate Version** | Inventory Sync Delay | On RDS, wait 30-60 minutes after maintenance for the XML descriptor to fully populate. |
 ---
 
 ## 📂 Project Structure
