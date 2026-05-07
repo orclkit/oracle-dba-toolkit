@@ -94,7 +94,7 @@ ORDER  BY pch.action_time DESC;
 ```
 
 <p align="center">
-  <img src="./images/oracle-19c-patch-registry-query.jpg" alt="Oracle 19c Patch Registry Results">
+  <img src="../images/oracle-19c-patch-registry-query.jpg" alt="Oracle 19c Patch Registry Results">
   <br>
   <i>Figure 1: Successful extraction of Target RU and Impacted Components from the Patch Descriptor.</i>
 </p>
