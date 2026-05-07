@@ -31,6 +31,29 @@ In a managed environment like **Amazon RDS**, AWS handles the binary patching of
 
 `DBA_REGISTRY_SQLPATCH` allows you to audit these automated AWS maintenance tasks to ensure your instance is running the expected Release Update (RU).
 
+```mermaid
+graph TD
+    subgraph "AWS Managed Layer (Binary)"
+    A[AWS Maintenance Window] -->|1. OPatch| B(Oracle Home / Binaries)
+    end
+
+    subgraph "Database Instance (Data Dictionary)"
+    B -->|2. Auto-Trigger Datapatch| C{SQL Scripts Execution}
+    C -->|3. Success| D["Update SYS.REGISTRY$SQLPATCH"]
+    C -->|4. Failure| E[Alert Log / RDS Logs]
+    D -->|5. View Results| F(("DBA_REGISTRY_SQLPATCH"))
+    end
+
+    style F fill:#f96,stroke:#333,stroke-width:2px
+    style A fill:#ff9,stroke:#333
+```
+
+### **Architectural Workflow Breakdown**
+1.  **Managed Patching (AWS):** AWS handles the physical installation of Oracle binaries (`OPatch`) during your defined maintenance window. 
+2.  **Automation:** Once binaries are updated, RDS automatically triggers the `datapatch` utility to run the required SQL/PLSQL scripts inside the database.
+3.  **The Registry:** Upon a successful run, the **`SYS.REGISTRY$SQLPATCH`** base table is updated.
+4.  **Verification:** As a developer, you query the **`DBA_REGISTRY_SQLPATCH`** view to verify that the Data Dictionary is in sync with the software version.
+
 ---
 
 ## 3. Core Column Reference for Developers
