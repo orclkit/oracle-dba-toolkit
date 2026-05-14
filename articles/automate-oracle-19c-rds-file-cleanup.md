@@ -1,7 +1,7 @@
 ---
 title: "Automate Oracle 19c RDS File Cleanup with JSON-Driven Regex and SQL"
 author: "Oracle-Expert"
-date: "2024-05-22"
+date: "2026-05-14"
 tags: [oracle, amazon-rds, json, regex, automation]
 ---
 
@@ -46,6 +46,10 @@ Before executing any cleanup, it is critical to identify the storage high-water 
 *   **Dynamic Discovery**: Uses `sys.dbms_debug_vc2coll` to generate a virtual, in-memory collection of target directory names.
 *   **Lateral Execution**: Employs the `CROSS APPLY` operator to perform a lateral join, triggering the `rds_file_util.listdir` function for every row in the collection.
 *   **Set-Based Aggregation**: Consolidates file counts and total disk usage across multiple directories in a single, high-performance operation.
+
+> [!TIP]
+> A production-ready, standalone version of this audit query is available in the repository at [`scripts/oracle-19c-rds-directory-storage-audit-engine.sql`](../scripts/oracle-19c-rds-directory-storage-audit-engine.sql).
+
 
 ```sql
 SET LINESIZE 200
